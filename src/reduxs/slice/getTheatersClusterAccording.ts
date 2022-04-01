@@ -6,7 +6,7 @@ export const theaterClusterApis = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: process.env.REACT_APP_URL }),
   endpoints: builder => ({
     getTheatersCluster: builder.query<TheaterCluster[], string | void>({
-      query: (id) => `QuanLyRap/LayThongTinCumRapTheoHeThong?maHeThongRap=${id}`
+      query: (id) => `/QuanLyRap/LayThongTinCumRapTheoHeThong?maHeThongRap=${id}`
     })
   })
 })

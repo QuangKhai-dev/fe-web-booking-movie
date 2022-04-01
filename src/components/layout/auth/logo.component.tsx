@@ -8,7 +8,7 @@ const LogoComponent = () => {
   return (
     <Box sx={{ cursor: 'pointer' }} mb={2}>
       <img
-        src={`/logo/logo-light.png`}
+        src={`/logo/logo-dark.png`}
         onClick={() => navigate(PAGE.HOME)}
         width={140}
         height={80}

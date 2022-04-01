@@ -6,10 +6,10 @@ export const theaterApis = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: process.env.REACT_APP_URL }),
   endpoints: builder => ({
     getAllTheatersSystem: builder.query<Theater[], void>({
-      query: () => `QuanLyRap/LayThongTinHeThongRap`
+      query: () => `/QuanLyRap/LayThongTinHeThongRap`
     }),
     getOneTheaterSystem: builder.query<Theater[], string| void>({
-      query: (id)=>`QuanLyRap/LayThongTinHeThongRap?maHeThongRap=${id}`
+      query: (id)=>`/QuanLyRap/LayThongTinHeThongRap?maHeThongRap=${id}`
     })
   })
 })

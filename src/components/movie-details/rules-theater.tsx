@@ -2,6 +2,7 @@ import { memo, useMemo } from "react"
 import { Box, Grid, Stack, Typography } from '@mui/material'
 import GppGoodRoundedIcon from "@mui/icons-material/GppGoodRounded"
 import { useTranslation } from "react-i18next"
+import { Fade } from "react-awesome-reveal"
 
 const RulesTheater = () => {
 
@@ -31,49 +32,51 @@ const RulesTheater = () => {
   ], [t])
 
   return (
-    <Box>
-      <Grid container >
-        <Grid item xs={12}>
-          <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center" }} pt={3}>
-            <Stack direction="row" spacing={0.5}>
-              <GppGoodRoundedIcon color="primary" />
-              <Typography fontWeight={600}>{t("MOVIE_DETAILS.SAFETY")}</Typography>
-            </Stack>
-          </Box>
-        </Grid>
-        {rulesTheaterMovie.map((item) => (
-          <Grid item md={3} xs={6} key={item.id}>
-            <Box
-              sx={{
-                width: "100%",
-                height: "100%",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                paddingY: 2
-              }}
-            >
-              <Stack spacing={1}>
-                <img
-                  src={item.image} width={50}
-                  height={50}
-                  style={{
-                    display: "block",
-                    marginLeft: "auto",
-                    marginRight: "auto"
-                  }}
-                  alt="image"
-                />
-                <Typography fontWeight={600} textAlign="center">
-                  {item.description}
-                </Typography>
+    <Fade delay={400}>
+      <Box>
+        <Grid container >
+          <Grid item xs={12}>
+            <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center" }} pt={3}>
+              <Stack direction="row" spacing={0.5}>
+                <GppGoodRoundedIcon color="primary" />
+                <Typography fontWeight={600}>{t("MOVIE_DETAILS.SAFETY")}</Typography>
               </Stack>
             </Box>
           </Grid>
-        ))}
+          {rulesTheaterMovie.map((item) => (
+            <Grid item md={3} xs={6} key={item.id}>
+              <Box
+                sx={{
+                  width: "100%",
+                  height: "100%",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  paddingY: 2
+                }}
+              >
+                <Stack spacing={1}>
+                  <img
+                    src={item.image} width={50}
+                    height={50}
+                    style={{
+                      display: "block",
+                      marginLeft: "auto",
+                      marginRight: "auto"
+                    }}
+                    alt="image"
+                  />
+                  <Typography fontWeight={600} textAlign="center">
+                    {item.description}
+                  </Typography>
+                </Stack>
+              </Box>
+            </Grid>
+          ))}
 
-      </Grid>
-    </Box>
+        </Grid>
+      </Box>
+    </Fade>
   )
 }
 

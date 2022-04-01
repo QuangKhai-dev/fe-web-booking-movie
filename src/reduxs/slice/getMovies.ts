@@ -19,11 +19,11 @@ export const moviesApis = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: process.env.REACT_APP_URL }),
   endpoints: builder => ({
     getMoviesNowShowing: builder.query<Movies, void>({
-      query: () => `/QuanLyPhim/LayDanhSachPhimPhanTrang?maNhom=GP01&soTrang=1&soPhanTuTrenTrang=8`
+      query: () => `/QuanLyPhim/LayDanhSachPhimPhanTrang?maNhom=GP02&soTrang=1&soPhanTuTrenTrang=8`
     }),
     getMoviesComingSoon: builder.query<Movie[], ComingSoonParams>({
       query: ({ fromDay, toDay }) =>
-        `/QuanLyPhim/LayDanhSachPhimTheoNgay?maNhom=GP01&soTrang=1&soPhanTuTrenTrang=10&tuNgay=${fromDay}&denNgay=${toDay}`
+        `/QuanLyPhim/LayDanhSachPhimTheoNgay?maNhom=GP02&soTrang=1&soPhanTuTrenTrang=10&tuNgay=${fromDay}&denNgay=${toDay}`
     }),
     getMovie : builder.query<Movie, string | void>({
       query: (id)=>`/QuanLyPhim/LayThongTinPhim?MaPhim=${id}`

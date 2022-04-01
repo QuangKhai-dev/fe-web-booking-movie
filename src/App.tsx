@@ -1,6 +1,7 @@
-import React, { useEffect } from "react"
+import React, { useEffect, createContext } from "react"
 import { useTranslation } from "react-i18next"
 import { ThemeProvider } from "@mui/material"
+import { Toaster } from 'react-hot-toast'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import { themeDark, themeLight } from "styles/theme"
 import "./i18n"
@@ -13,6 +14,8 @@ const HomePage = React.lazy(() => import("screen/home-page"))
 const Layout = React.lazy(() => import("components/layout"))
 const LoginPage = React.lazy(() => import("screen/login"))
 const RegisterPage = React.lazy(() => import("screen/register"))
+
+const BookingTicketsPage = React.lazy(() => import("screen/booking-tickets-page"))
 
 function App() {
   const { i18n } = useTranslation()
@@ -28,6 +31,25 @@ function App() {
     <ThemeProvider theme={theme === "dark" ? themeDark : themeLight}>
       <Router>
         <Routes>
+          <Route path="/booking-tickets/:id" element={
+            <React.Suspense fallback={<LoadingComponent />}>
+              <BookingTicketsPage />
+            </React.Suspense>
+          } />
+          <Route path="/login" element={
+            <React.Suspense fallback={<LoadingComponent />}>
+              <AuthLayout>
+                <LoginPage />
+              </AuthLayout>
+            </React.Suspense>
+          } />
+          <Route path="/register" element={
+            <React.Suspense fallback={<LoadingComponent />}>
+              <AuthLayout>
+                <RegisterPage />
+              </AuthLayout>
+            </React.Suspense>
+          } />
           <Route
             path="/"
             element={
@@ -46,22 +68,32 @@ function App() {
             />
             <Route path="/movie/:id" element={<MovieDetail />} />
           </Route>
-          <Route path="/login" element={
-            <React.Suspense fallback={<LoadingComponent />}>
-              <AuthLayout>
-                <LoginPage />
-              </AuthLayout>
-            </React.Suspense>
-          } />
-          <Route path="/register" element={
-            <React.Suspense fallback={<LoadingComponent />}>
-              <AuthLayout>
-                <RegisterPage />
-              </AuthLayout>
-            </React.Suspense>
-          } />
         </Routes>
       </Router>
+      <Toaster
+        position="bottom-center"
+        reverseOrder={false}
+        gutter={8}
+        containerClassName=""
+        containerStyle={{}}
+        toastOptions={{
+          // Define default options
+          className: '',
+          duration: 5000,
+          style: {
+            background: '#363636',
+            color: '#fff',
+          },
+          // Default options for specific types
+          success: {
+            duration: 3000,
+            theme: {
+              primary: 'green',
+              secondary: 'black',
+            },
+          },
+        }}
+      />
     </ThemeProvider>
   )
 }

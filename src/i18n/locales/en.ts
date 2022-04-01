@@ -9,6 +9,9 @@ const en = {
     NEWS: "News",
     BOOKING_TICKETS: 'Book tickets',
     NOT_AVAILABLE: 'Not Available',
+    LOG_OUT: 'Logout',
+    SETTINGS: 'Settings',
+    BOOKING_HISTORY:'Booking history'
   },
   FORM:{
     USER_NAME: 'Username',
@@ -18,13 +21,26 @@ const en = {
     PHONE:'Phone'
   },
   INPUTS: {
-    ERROR_REQUIRED:'This field is required!'
+    ERROR_REQUIRED:'This field is required!',
+    EMAIL_INVALIDATE:'Must be a valid email!',
+    PHONE_INVALIDATE: 'Must be a valid phone!',
+    SHORTER_PASSWORD: 'Passwords from 8 - 20 characters!',
+    LONGER_PASSWORD: 'Password is too long!',
+    CONFIRM_PASSWORD: 'Passwords must match!',
+    MIN_LENGTH: 'Password must be 8 characters or more!',
+    USER_NAME: 'Includes letters and numbers, no special characters and unsigned!'
   },
   BUTTON:{
       LOGIN:'Sign In',
       RESET_PASSWORD:'Reset Password',
       REGISTER: 'Register Account',
       CREATE_ACCOUNT: 'Create Account'
+  },
+  HEADER: {
+    SHOW_TIMES: "Showtimes",
+    THEATERS: "Theaters",
+    PLACE_HOLDER_SEARCH: "Search Movies...",
+    ACCOUNT_SETTINGS:'Account Settings'
   },
   FOOTER: {
     TERMS_OF_SERVICES: "Terms of Service",
@@ -45,11 +61,7 @@ const en = {
     DARK: "Dark",
     LIGHT: "Light"
   },
-  HEADER: {
-    SHOW_TIMES: "Showtimes",
-    THEATERS: "Theaters",
-    PLACE_HOLDER_SEARCH: "Search Movies..."
-  },
+  
   AUTH: {
     LOGIN: "Log in",
     SIGNUP: "Sign up",
@@ -72,11 +84,14 @@ const en = {
   LOGIN :{
     ACCOUNT_LOGIN : 'Account Login',
     DESCRIPTIONS: 'Enter your credentials to access your account.',
-    FORGOT_PASSWORD: 'Forgot your password?'
+    FORGOT_PASSWORD: 'Forgot your password?',
+    LOGIN_ERROR: 'Incorrect account or password!'
   },
   REGISTER: {
     CREATE: 'Create New Account',
-    ALREADY_ACCOUNT: 'Already a member?'
+    ALREADY_ACCOUNT: 'Already a member?',
+    REGISTER_ERROR: 'Register failure!',
+    REGISTER_SUCCESS: 'Register successfully!'
   }
 }
 export default en

@@ -13,6 +13,8 @@ export const EMPTY_STRING = ""
 export const DATE_TIME_FORMAT = "DD/MM/YYYY HH:mm:ss"
 export const DATE_TIME_MIN_FORMAT = "DD/MM/YYYY HH:mm"
 
+export const KEY_LOGIN_LOCAL = "booking-movie"
+
 export const RANDOM_MIN: any = {
   1: "92",
   2: "120",
@@ -35,4 +37,9 @@ export const RANDOM_FAVORITE: any = {
   7: "5k",
   8: "3k",
   9: "2.6k"
+}
+
+export const REGEX = {
+  PHONE :/(84|0[3|5|7|8|9])+([0-9]{8})\b/,
+  USER_NAME: /^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/
 }
