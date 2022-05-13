@@ -1,16 +1,16 @@
-import React, { FC, useCallback, useState } from "react"
-import { useNavigate } from "react-router-dom"
-import { useTranslation } from "react-i18next"
+import React, { FC, useCallback, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
-import { Card, CardMedia, Box, Typography, Stack, Button } from "@mui/material"
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder"
-import PlayArrowRoundedIcon from '@mui/icons-material/PlayArrowRounded';
+import { Card, CardMedia, Box, Typography, Stack, Button } from '@mui/material'
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
+import PlayArrowRoundedIcon from '@mui/icons-material/PlayArrowRounded'
 
-import { Movie } from "interfaces"
-import { RANDOM_FAVORITE, RANDOM_MIN } from "utils/constants"
+import { Movie } from 'interfaces'
+import { RANDOM_FAVORITE, RANDOM_MIN } from 'utils/constants'
 
-import useStyles from "components/movies/index.styled"
-import TrailerModal from "components/trailer/modal-trailer.component"
+import useStyles from 'components/movies/index.styled'
+import TrailerModal from 'components/trailer/modal-trailer.component'
 
 type Props = {
   movie?: Movie
@@ -32,7 +32,7 @@ const MovieItemComponent: FC<Props> = ({ movie }) => {
 
   return (
     <React.Fragment>
-      <Card sx={{ display: "flex" }}>
+      <Card sx={{ display: 'flex' }}>
         <Box className={styles.cardContainer}>
           <CardMedia component="img" className={styles.thumbnail} src={movie?.hinhAnh} alt={movie?.biDanh} />
 
@@ -44,7 +44,7 @@ const MovieItemComponent: FC<Props> = ({ movie }) => {
 
               <Stack>
                 <Typography variant="subtitle2" fontWeight={500} color="common.white">
-                  {minRandom && `${RANDOM_MIN[minRandom]} ${t("COMMON.MIN")} - 9.1 IMDb`}
+                  {minRandom && `${RANDOM_MIN[minRandom]} ${t('COMMON.MIN')} - 9.1 IMDb`}
                 </Typography>
               </Stack>
             </Stack>
@@ -52,7 +52,9 @@ const MovieItemComponent: FC<Props> = ({ movie }) => {
               <Button variant="contained" onClick={handleViewDetail}>
                 {t('COMMON.BOOKING_TICKETS')}
               </Button>
-              <Button variant="outlined" onClick={handleViewTrailer}
+              <Button
+                variant="outlined"
+                onClick={handleViewTrailer}
                 startIcon={<PlayArrowRoundedIcon color="primary" />}
               >
                 Trailer

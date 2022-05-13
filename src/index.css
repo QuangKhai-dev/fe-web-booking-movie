@@ -34,3 +34,7 @@ code {
 #loading::-webkit-scrollbar {
   display: none;
 }
+.slick-center{
+  transform: scale(1.5) !important;
+  font-weight: 700;
+}

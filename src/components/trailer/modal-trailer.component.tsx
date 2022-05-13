@@ -1,9 +1,9 @@
-import * as React from "react"
+import * as React from 'react'
 
-import { Dialog, Slide, Box, IconButton } from "@mui/material"
-import CloseIcon from "@mui/icons-material/Close"
-import { TransitionProps } from "@mui/material/transitions"
-import ReactPlayer from "react-player/lazy"
+import { Dialog, Slide, Box, IconButton } from '@mui/material'
+import CloseIcon from '@mui/icons-material/Close'
+import { TransitionProps } from '@mui/material/transitions'
+import ReactPlayer from 'react-player/lazy'
 
 type Props = {
   open: boolean
@@ -29,7 +29,7 @@ const TrailerModal: React.FC<Props> = ({ open, onClose, urlTrailer }) => {
         open={open}
         onClose={onClose}
         TransitionComponent={Transition}
-        sx={{ background: "#080808" }}
+        sx={{ background: '#080808' }}
       >
         <Box
           display="flex"
@@ -43,7 +43,7 @@ const TrailerModal: React.FC<Props> = ({ open, onClose, urlTrailer }) => {
           <Box width="80%" height="70%">
             <ReactPlayer url={urlTrailer} playing controls loop={false} width="100%" height="100%" />
           </Box>
-          <IconButton sx={{ position: "absolute", top: "2%", right: "2%" }}>
+          <IconButton sx={{ position: 'absolute', top: '2%', right: '2%' }}>
             <CloseIcon fontSize="large" onClick={onClose} />
           </IconButton>
         </Box>

@@ -1,24 +1,24 @@
-import { createSlice, PayloadAction} from '@reduxjs/toolkit'
-import { getLocalStorage} from 'utils/common'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { getLocalStorage } from 'utils/common'
 import { MODE_THEME } from 'utils/constants'
 
 const theme = getLocalStorage(MODE_THEME)
 
 type StateType = {
-  modeTheme:string
+  modeTheme: string
 }
 
-const initialState : StateType={
-  modeTheme:theme ? JSON.parse(theme) : 'dark'
+const initialState: StateType = {
+  modeTheme: theme ? JSON.parse(theme) : 'dark'
 }
 
 const slice = createSlice({
-  name:'mode-theme',
+  name: 'mode-theme',
   initialState,
-  reducers:{
-    changesModeTheme:(state , _action: PayloadAction<{ theme :string}>)=>({
+  reducers: {
+    changesModeTheme: (state, _action: PayloadAction<{ theme: string }>) => ({
       ...state,
-      modeTheme: state.modeTheme === _action.payload.theme ?   state.modeTheme: _action.payload.theme
+      modeTheme: state.modeTheme === _action.payload.theme ? state.modeTheme : _action.payload.theme
     })
   }
 })

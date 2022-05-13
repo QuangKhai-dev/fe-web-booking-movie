@@ -1,25 +1,20 @@
-
-import React from "react";
-import Carousel from 'react-elastic-carousel';
-import { Box } from "@mui/material";
+import React from 'react'
+import Carousel from 'react-elastic-carousel'
+import { Box } from '@mui/material'
 import useStyles from 'components/home/carousel/index.styles'
-
 
 const mocks = [
   {
     id: '123kjas3',
-    url: "https://s3img.vcdn.vn/123phim/2021/04/trang-ti-16194117174325.jpg"
+    url: 'https://s3img.vcdn.vn/123phim/2021/04/trang-ti-16194117174325.jpg'
   },
   {
     id: '1212sas3',
-    url: "https://s3img.vcdn.vn/123phim/2021/04/lat-mat-48h-16177782153424.png"
-  },
-
+    url: 'https://s3img.vcdn.vn/123phim/2021/04/lat-mat-48h-16177782153424.png'
+  }
 ]
 
-
 const CarouselComponent = () => {
-
   const styles = useStyles()
 
   return (
@@ -35,12 +30,15 @@ const CarouselComponent = () => {
       showArrows={false}
       pagination={false}
     >
-      {mocks.map((item) => (
+      {mocks.map(item => (
         <Box key={item.id} className={styles.carouselItem}>
-          <img src={item.url} style={{ position: 'absolute', width: '100%', height: '100%', objectFit: 'cover' }} alt="banner" />
+          <img
+            src={item.url}
+            style={{ position: 'absolute', width: '100%', height: '100%', objectFit: 'cover' }}
+            alt="banner"
+          />
         </Box>
       ))}
-
     </Carousel>
   )
 }

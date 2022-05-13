@@ -1,11 +1,13 @@
 {
   "arrowParens": "avoid",
-  "semi": false,
+  "semi": false, 
   "trailingComma": "none",
   "endOfLine": "lf",
   "tabWidth": 2,
   "useTabs": false,
   "singleQuote": true,
   "printWidth": 120,
-  "jsxSingleQuote": false
+  "jsxSingleQuote": false,
+  "prettier.bracketSpacing":false,
+  "jsx-a11y/img-redundant-alt": false
 }

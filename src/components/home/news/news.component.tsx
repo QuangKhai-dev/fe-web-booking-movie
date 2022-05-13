@@ -1,8 +1,8 @@
-import React from "react"
-import { Grid, Stack, Typography } from "@mui/material"
-import { useTranslation } from "react-i18next"
-import NewItemComponent from "./new-item.component"
-import { Fade } from "react-awesome-reveal"
+import React, { memo } from 'react'
+import { Grid, Stack, Typography } from '@mui/material'
+import { useTranslation } from 'react-i18next'
+import NewItemComponent from './new-item.component'
+import { Fade } from 'react-awesome-reveal'
 
 const NewsComponent = () => {
   const { t } = useTranslation()
@@ -10,8 +10,8 @@ const NewsComponent = () => {
   return (
     <Fade delay={400}>
       <Stack spacing={2}>
-        <Typography variant="h5" sx={{ textTransform: "uppercase" }}>
-          {t("COMMON.NEWS")}
+        <Typography variant="h5" sx={{ textTransform: 'uppercase' }}>
+          {t('COMMON.NEWS')}
         </Typography>
         <Stack spacing={4}>
           <Grid container spacing={2}>
@@ -27,4 +27,4 @@ const NewsComponent = () => {
   )
 }
 
-export default NewsComponent
+export default memo(NewsComponent)

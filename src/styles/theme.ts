@@ -1,28 +1,28 @@
-import { createTheme } from "@mui/material"
+import { createTheme } from '@mui/material'
 
 const baseOptions = {
   components: {
     MuiButton: {
       styleOverrides: {
         root: {
-          borderRadius: "8px",
-          "&$disabled": {
-            backgroundColor: "#fac011 !important",
-            "& .MuiButton-label": {
-              color: "white"
+          borderRadius: '8px',
+          '&$disabled': {
+            backgroundColor: '#fac011 !important',
+            '& .MuiButton-label': {
+              color: 'white'
             }
           },
-          boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px"
+          boxShadow: 'rgba(100, 100, 111, 0.2) 0px 7px 29px 0px'
         },
 
         text: {
-          "&$disabled": {
-            backgroundColor: "transparent !important"
+          '&$disabled': {
+            backgroundColor: 'transparent !important'
           }
         },
 
         contained: {
-          color: "#000",
+          color: '#000',
 
           letterSpacing: 1
         }
@@ -33,7 +33,8 @@ const baseOptions = {
       styleOverrides: {
         root: {
           borderRadius: 10,
-          boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px"
+          boxShadow: 'rgba(100, 100, 111, 0.2) 0px 7px 29px 0px',
+          overFlow: 'hidden'
         }
       }
     },
@@ -42,7 +43,8 @@ const baseOptions = {
       styleOverrides: {
         root: {
           borderRadius: 10,
-          boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;"
+          boxShadow: 'rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;',
+          overFlow: 'hidden'
         }
       }
     }
@@ -52,24 +54,24 @@ const baseOptions = {
 const themeDark = createTheme({
   spacing: 16,
   palette: {
-    mode: "dark",
+    mode: 'dark',
     primary: {
-      main: "#ffce26",
-      light: "#ffff60",
-      dark: "#c79d00"
+      main: '#ffce26',
+      light: '#ffff60',
+      dark: '#c79d00'
     },
     secondary: {
-      main: "#5cb85c",
-      light: "#8feb8b",
-      dark: "#26872f"
+      main: '#5cb85c',
+      light: '#8feb8b',
+      dark: '#26872f'
     },
     background: {
-      default: "#080808",
+      default: '#080808'
       // paper: "#eee"
     },
     text: {
-      secondary: "#898989" ,
-      disabled:'#1b1b1b'
+      secondary: '#898989',
+      disabled: '#1b1b1b'
     }
   },
   ...baseOptions,
@@ -83,39 +85,39 @@ const themeDark = createTheme({
     fontWeightBold: 700,
     h1: {
       fontWeight: 600,
-      fontSize: "3.5rem",
+      fontSize: '3.5rem',
       letterSpacing: 1
     },
     h2: {
       fontWeight: 600,
-      fontSize: "3rem",
+      fontSize: '3rem',
       letterSpacing: 1
     },
     h3: {
       fontWeight: 600,
-      fontSize: "2.25rem",
+      fontSize: '2.25rem',
       letterSpacing: 1
     },
     h4: {
       letterSpacing: 1,
       fontWeight: 600,
-      fontSize: "2rem"
+      fontSize: '2rem'
     },
     h5: {
       fontWeight: 600,
-      fontSize: "1.5rem",
+      fontSize: '1.5rem',
       letterSpacing: 1
     },
     h6: {
       fontWeight: 600,
-      fontSize: "1.125rem",
+      fontSize: '1.125rem',
       letterSpacing: 1
     },
     subtitle1: {
       letterSpacing: 1
     },
     button: {
-      textTransform: "capitalize",
+      textTransform: 'capitalize',
       fontWeight: 600
     },
     overline: {
@@ -126,23 +128,23 @@ const themeDark = createTheme({
 const themeLight = createTheme({
   spacing: 16,
   palette: {
-    mode: "light",
+    mode: 'light',
     primary: {
-      main: "#ffce26",
-      light: "#ffff60",
-      dark: "#c79d00"
+      main: '#ffce26',
+      light: '#ffff60',
+      dark: '#c79d00'
     },
     secondary: {
-      main: "#1b1b1b",
-      light: "#424242",
-      dark: "#000000"
+      main: '#1b1b1b',
+      light: '#424242',
+      dark: '#000000'
     },
     background: {
-      default: "white",
-      paper: "white"
+      default: 'white',
+      paper: 'white'
     },
     text: {
-      secondary: "#898989"
+      secondary: '#898989'
     }
   },
   ...baseOptions,
@@ -156,39 +158,39 @@ const themeLight = createTheme({
     fontWeightBold: 700,
     h1: {
       fontWeight: 600,
-      fontSize: "3.5rem",
+      fontSize: '3.5rem',
       letterSpacing: 1
     },
     h2: {
       fontWeight: 600,
-      fontSize: "3rem",
+      fontSize: '3rem',
       letterSpacing: 1
     },
     h3: {
       fontWeight: 600,
-      fontSize: "2.25rem",
+      fontSize: '2.25rem',
       letterSpacing: 1
     },
     h4: {
       letterSpacing: 1,
       fontWeight: 600,
-      fontSize: "2rem"
+      fontSize: '2rem'
     },
     h5: {
       fontWeight: 600,
-      fontSize: "1.5rem",
+      fontSize: '1.5rem',
       letterSpacing: 1
     },
     h6: {
       fontWeight: 600,
-      fontSize: "1.125rem",
+      fontSize: '1.125rem',
       letterSpacing: 1
     },
     subtitle1: {
       letterSpacing: 1
     },
     button: {
-      textTransform: "capitalize",
+      textTransform: 'capitalize',
       fontWeight: 600
     },
     overline: {

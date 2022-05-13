@@ -1,7 +1,7 @@
-import { memo, useCallback, useEffect, useMemo, useState } from "react"
-import { useTranslation } from "react-i18next"
-import { useAppSelector } from "reduxs/hooks"
-import { useNavigate } from "react-router-dom"
+import { memo, useCallback, useEffect, useMemo, useState } from 'react'
+import { useTranslation } from 'react-i18next'
+import { useAppSelector } from 'reduxs/hooks'
+import { useNavigate } from 'react-router-dom'
 import {
   AppBar,
   Box,
@@ -16,42 +16,41 @@ import {
   Menu,
   MenuItem,
   Divider
-} from "@mui/material"
-import Avatar from '@mui/material/Avatar';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import Logout from '@mui/icons-material/Logout';
-import Settings from '@mui/icons-material/Settings';
-import HistoryEduRoundedIcon from '@mui/icons-material/HistoryEduRounded';
+} from '@mui/material'
+import ListItemIcon from '@mui/material/ListItemIcon'
+import Logout from '@mui/icons-material/Logout'
+import Settings from '@mui/icons-material/Settings'
+import HistoryEduRoundedIcon from '@mui/icons-material/HistoryEduRounded'
 
-import PersonRoundedIcon from '@mui/icons-material/PersonRounded';
-import { PAGE } from "routes"
-import { KEY_LOGIN_LOCAL } from "utils/constants"
-import { getLocalStorage } from "utils/common"
+import PersonRoundedIcon from '@mui/icons-material/PersonRounded'
+import { PAGE } from 'routes'
+import { KEY_LOGIN_LOCAL } from 'utils/constants'
+import { getLocalStorage } from 'utils/common'
 
 const Header = () => {
   const theme = useTheme()
   const { t } = useTranslation()
   const navigate = useNavigate()
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"))
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
   const getJwtLocal = getLocalStorage(KEY_LOGIN_LOCAL)
   const [currentUser, setCurrentUser] = useState(null)
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
 
-  const modeTheme = useAppSelector(state => state["mode-theme"].modeTheme)
+  const modeTheme = useAppSelector(state => state['mode-theme'].modeTheme)
 
   const navItems = useMemo(
     () => [
       {
-        id: "now-show",
-        label: t("HEADER.SHOW_TIMES")
+        id: 'now-show',
+        label: t('HEADER.SHOW_TIMES')
       },
       {
-        id: "cum-rap",
-        label: t("HEADER.THEATERS")
+        id: 'cum-rap',
+        label: t('HEADER.THEATERS')
       },
       {
-        id: "tin-tuc",
-        label: t("COMMON.NEWS")
+        id: 'tin-tuc',
+        label: t('COMMON.NEWS')
       }
     ],
     [t]
@@ -71,39 +70,39 @@ const Header = () => {
     if (!getJwtLocal) setCurrentUser(null)
   }, [getJwtLocal])
 
-  const open = Boolean(anchorEl);
+  const open = Boolean(anchorEl)
 
-  const handleClick = (event: React.MouseEvent<HTMLElement>) => setAnchorEl(event.currentTarget);
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => setAnchorEl(event.currentTarget)
 
-  const handleClose = () => setAnchorEl(null);
+  const handleClose = () => setAnchorEl(null)
 
   const handleLogout = () => {
-    console.log("localStorage.removeItem(KEY_LOGIN_LOCAL)")
+    console.log('localStorage.removeItem(KEY_LOGIN_LOCAL)')
   }
 
   return (
     <AppBar position="fixed" sx={{ backgroundColor: theme.palette.background.default, zIndex: 99 }}>
-      <Toolbar sx={{ minHeight: isMobile ? "64px" : "84px", py: 1 }}>
-        <Stack direction="row" alignItems={"center"} justifyContent="space-between" spacing={2} width="100%">
+      <Toolbar sx={{ minHeight: isMobile ? '64px' : '84px', py: 1 }}>
+        <Stack direction="row" alignItems={'center'} justifyContent="space-between" spacing={2} width="100%">
           <Box sx={{ cursor: 'pointer' }} onClick={navigateHomepage}>
             <img
               src={`/logo/logo-${modeTheme}.png`}
               width={110}
               height={65}
-              style={{ objectFit: "cover" }}
+              style={{ objectFit: 'cover' }}
               alt="logo"
             />
           </Box>
-          <Stack sx={{ display: { xs: "none", md: "flex" } }} flex={2} direction="row" spacing={3} alignItems="center">
+          <Stack sx={{ display: { xs: 'none', md: 'flex' } }} flex={2} direction="row" spacing={3} alignItems="center">
             {navItems.map(item => (
               <Box key={item.id} onClick={() => handleScrollEl(item.id)} id={item.id}>
                 <Typography
                   variant="subtitle1"
                   sx={{
-                    color: "text.primary",
-                    transition: "all 0.3s",
-                    cursor: "pointer",
-                    "&:hover": {
+                    color: 'text.primary',
+                    transition: 'all 0.3s',
+                    cursor: 'pointer',
+                    '&:hover': {
                       color: theme => theme.palette.primary.main
                     },
                     fontWeight: 600
@@ -116,19 +115,23 @@ const Header = () => {
             {/* <SearchComponent /> */}
           </Stack>
 
-          {!currentUser && <Box>
-            <Button variant="contained" onClick={() => navigate(PAGE.LOGIN)}>{t("AUTH.LOGIN")}</Button>
-          </Box>}
+          {!currentUser && (
+            <Box>
+              <Button variant="contained" onClick={() => navigate(PAGE.LOGIN)}>
+                {t('AUTH.LOGIN')}
+              </Button>
+            </Box>
+          )}
 
-          {currentUser &&
+          {currentUser && (
             <div>
               <IconButton onClick={handleClick}>
-                <Tooltip title={t("HEADER.ACCOUNT_SETTINGS") as string}>
+                <Tooltip title={t('HEADER.ACCOUNT_SETTINGS') as string}>
                   <PersonRoundedIcon />
                 </Tooltip>
               </IconButton>
             </div>
-          }
+          )}
         </Stack>
         <Menu
           anchorEl={anchorEl}
@@ -146,7 +149,7 @@ const Header = () => {
                 width: 32,
                 height: 32,
                 ml: -0.5,
-                mr: 1,
+                mr: 1
               },
               '&:before': {
                 content: '""',
@@ -158,14 +161,13 @@ const Header = () => {
                 height: 10,
                 bgcolor: 'background.paper',
                 transform: 'translateY(-50%) rotate(45deg)',
-                zIndex: 0,
-              },
-            },
+                zIndex: 0
+              }
+            }
           }}
           transformOrigin={{ horizontal: 'right', vertical: 'top' }}
           anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
         >
-
           <MenuItem>
             <ListItemIcon>
               <Settings fontSize="small" />
@@ -185,7 +187,6 @@ const Header = () => {
             </ListItemIcon>
             {t('COMMON.LOG_OUT')}
           </MenuItem>
-
         </Menu>
       </Toolbar>
     </AppBar>

@@ -1,29 +1,29 @@
 import * as yup from 'yup'
-import { useFormik } from "formik";
-import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
-import { Box, Stack, Typography, TextField, Grid, InputAdornment } from "@mui/material"
-import { LoadingButton } from "@mui/lab";
-import AccountBoxRoundedIcon from '@mui/icons-material/AccountBoxRounded';
-import MailRoundedIcon from '@mui/icons-material/MailRounded';
-import ContactPhoneRoundedIcon from '@mui/icons-material/ContactPhoneRounded';
-import PersonRoundedIcon from '@mui/icons-material/PersonRounded';
-import HttpsRoundedIcon from '@mui/icons-material/HttpsRounded';
+import { useFormik } from 'formik'
+import { useTranslation } from 'react-i18next'
+import { useNavigate } from 'react-router-dom'
+import { Box, Stack, Typography, TextField, Grid, InputAdornment } from '@mui/material'
+import { LoadingButton } from '@mui/lab'
+import AccountBoxRoundedIcon from '@mui/icons-material/AccountBoxRounded'
+import MailRoundedIcon from '@mui/icons-material/MailRounded'
+import ContactPhoneRoundedIcon from '@mui/icons-material/ContactPhoneRounded'
+import PersonRoundedIcon from '@mui/icons-material/PersonRounded'
+import HttpsRoundedIcon from '@mui/icons-material/HttpsRounded'
 
-import { PAGE } from "routes";
-import { REGEX } from 'utils/constants';
-import { useRegisterMutation } from 'reduxs/slice/auth';
-import LogoComponent from 'components/layout/auth/logo.component';
-import { useEffect, useState } from 'react';
-import toast from 'react-hot-toast';
+import { PAGE } from 'routes'
+import { REGEX } from 'utils/constants'
+import { useRegisterMutation } from 'reduxs/slice/auth'
+import LogoComponent from 'components/layout/auth/logo.component'
+import { useEffect, useState } from 'react'
+import toast from 'react-hot-toast'
 
 type InputValues = {
-  userName: string,
-  password: string,
-  email: string,
-  phone: string,
-  idGroup: string,
-  fullName: string,
+  userName: string
+  password: string
+  email: string
+  phone: string
+  idGroup: string
+  fullName: string
   confirmPassword: string
 }
 const initialValues: InputValues = {
@@ -37,42 +37,47 @@ const initialValues: InputValues = {
 }
 
 type MessageError = {
-  data?: string,
-  status?: string,
+  data?: string
+  status?: string
   originalStatus?: number
 }
 
 const RegisterPage = () => {
-
   const navigate = useNavigate()
   const { t } = useTranslation()
   const [messageError, setMessageError] = useState<MessageError | any>(null)
 
-  let timer: ReturnType<typeof setTimeout>;
+  let timer: ReturnType<typeof setTimeout>
   const [register, { isLoading, error: userRegisterError, isSuccess, data }] = useRegisterMutation()
 
   const formik = useFormik({
     initialValues,
-    onSubmit: (value: InputValues) => {
-      navigate({
-        pathname: PAGE.LOGIN,
-        search: `?userName=${value.userName}`
+    onSubmit: async (value: InputValues) => {
+      await register({
+        maNhom: value.idGroup,
+        taiKhoan: value.userName,
+        email: value.email,
+        hoTen: value.fullName,
+        soDt: value.phone,
+        matKhau: value.password,
+        maLoaiNguoiDung: 'KhachHang'
       })
-      // register({
-      //   maNhom: value.idGroup,
-      //   taiKhoan: value.userName,
-      //   email: value.email,
-      //   hoTen: value.fullName,
-      //   soDt: value.phone,
-      //   matKhau: value.password,
-      //   maLoaiNguoiDung: 'KhachHang'
-      // })
+      if (isSuccess)
+        navigate({
+          pathname: PAGE.LOGIN,
+          search: `?userName=${value.userName}`
+        })
     },
     validationSchema: yup.object().shape({
       fullName: yup.string().required(t('INPUTS.ERROR_REQUIRED')),
       userName: yup.string().required(t('INPUTS.ERROR_REQUIRED')).matches(REGEX.USER_NAME, t('INPUTS.USER_NAME')),
-      password: yup.string().required(t('INPUTS.ERROR_REQUIRED')).min(8, t('INPUTS.SHORTER_PASSWORD')).max(20, t('INPUTS.LONGER_PASSWORD')),
-      confirmPassword: yup.string()
+      password: yup
+        .string()
+        .required(t('INPUTS.ERROR_REQUIRED'))
+        .min(8, t('INPUTS.SHORTER_PASSWORD'))
+        .max(20, t('INPUTS.LONGER_PASSWORD')),
+      confirmPassword: yup
+        .string()
         .oneOf([yup.ref('password'), null], t('INPUTS.CONFIRM_PASSWORD'))
         .required(t('INPUTS.ERROR_REQUIRED')),
       email: yup.string().required(t('INPUTS.ERROR_REQUIRED')).email('INPUTS.EMAIL_INVALIDATE'),
@@ -89,10 +94,9 @@ const RegisterPage = () => {
       toast.success(t('REGISTER.REGISTER_SUCCESS'))
       // eslint-disable-next-line react-hooks/exhaustive-deps
       timer = setTimeout(() => {
-        navigate(PAGE.LOGIN, {
-          state: {
-            email: data?.email
-          }
+        navigate({
+          pathname: PAGE.LOGIN,
+          search: `?userName=${data.taiKhoan}`
         })
       }, 2000)
     }
@@ -104,16 +108,11 @@ const RegisterPage = () => {
   }, [messageError, t])
 
   return (
-    <Box minWidth="40%" textAlign='center'>
+    <Box minWidth="40%" textAlign="center">
       <LogoComponent />
-      <Box
-        minWidth="20%"
-        p={3}
-        borderRadius={2}
-        sx={{ boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px" }}
-      >
+      <Box minWidth="20%" p={3} borderRadius={2} sx={{ boxShadow: 'rgba(100, 100, 111, 0.2) 0px 7px 29px 0px' }}>
         <Stack spacing={0.5} textAlign="center">
-          <Typography variant='h5' color="white" fontWeight={700} textAlign="center">
+          <Typography variant="h5" color="white" fontWeight={700} textAlign="center">
             {t('REGISTER.CREATE')}
             <span style={{ fontSize: '35px' }}>.</span>
           </Typography>
@@ -127,14 +126,15 @@ const RegisterPage = () => {
                 fontWeight={600}
                 color="primary.main"
                 sx={{ cursor: 'pointer' }}
-                component='a'
-                onClick={() => navigate(PAGE.LOGIN)}>
+                component="a"
+                onClick={() => navigate(PAGE.LOGIN)}
+              >
                 {t('BUTTON.LOGIN')}
               </Typography>
             </Stack>
           </Stack>
         </Stack>
-        <form onSubmit={formik.handleSubmit}>
+        <form onSubmit={formik.handleSubmit} autoComplete="off">
           <Stack spacing={1.5} mt={2}>
             <TextField
               name="fullName"
@@ -143,9 +143,9 @@ const RegisterPage = () => {
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
-                    <AccountBoxRoundedIcon color='primary' fontSize='small' />
+                    <AccountBoxRoundedIcon color="primary" fontSize="small" />
                   </InputAdornment>
-                ),
+                )
               }}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
@@ -160,9 +160,9 @@ const RegisterPage = () => {
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
-                    <MailRoundedIcon color='primary' fontSize='small' />
+                    <MailRoundedIcon color="primary" fontSize="small" />
                   </InputAdornment>
-                ),
+                )
               }}
               margin="none"
               onChange={formik.handleChange}
@@ -177,9 +177,9 @@ const RegisterPage = () => {
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
-                    <ContactPhoneRoundedIcon color='primary' fontSize='small' />
+                    <ContactPhoneRoundedIcon color="primary" fontSize="small" />
                   </InputAdornment>
-                ),
+                )
               }}
               margin="none"
               onChange={formik.handleChange}
@@ -194,9 +194,9 @@ const RegisterPage = () => {
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
-                    <PersonRoundedIcon color='primary' fontSize='small' />
+                    <PersonRoundedIcon color="primary" fontSize="small" />
                   </InputAdornment>
-                ),
+                )
               }}
               margin="none"
               onChange={formik.handleChange}
@@ -215,9 +215,9 @@ const RegisterPage = () => {
                     InputProps={{
                       startAdornment: (
                         <InputAdornment position="start">
-                          <HttpsRoundedIcon color='primary' fontSize='small' />
+                          <HttpsRoundedIcon color="primary" fontSize="small" />
                         </InputAdornment>
-                      ),
+                      )
                     }}
                     margin="none"
                     onChange={formik.handleChange}
@@ -225,7 +225,6 @@ const RegisterPage = () => {
                     helperText={formik.touched.password && formik.errors.password}
                     error={Boolean(formik.errors.password && formik.touched.password)}
                   />
-
                 </Grid>
                 <Grid item xs={12} md={6}>
                   <TextField
@@ -236,9 +235,9 @@ const RegisterPage = () => {
                     InputProps={{
                       startAdornment: (
                         <InputAdornment position="start">
-                          <HttpsRoundedIcon color='primary' fontSize='small' />
+                          <HttpsRoundedIcon color="primary" fontSize="small" />
                         </InputAdornment>
-                      ),
+                      )
                     }}
                     margin="none"
                     onChange={formik.handleChange}
@@ -252,13 +251,17 @@ const RegisterPage = () => {
             <LoadingButton
               disabled={!formik.dirty}
               type="submit"
-              sx={{ minHeight: '50px' }} loading={isLoading} variant='contained' fullWidth>
+              sx={{ minHeight: '50px' }}
+              loading={isLoading}
+              variant="contained"
+              fullWidth
+            >
               {t('BUTTON.CREATE_ACCOUNT')}
             </LoadingButton>
           </Stack>
         </form>
       </Box>
-    </Box >
+    </Box>
   )
 }
 
